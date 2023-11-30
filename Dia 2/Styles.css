@@ -1,0 +1,119 @@
+*{
+    font-family: sans-serif;
+    margin: 0px;
+}
+
+body{
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden
+}
+
+header{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 1em;
+    color: white;
+    background-color: #333;
+    height: 12vh;
+}
+
+header h1{
+    margin: 0;
+}
+
+nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+#nav-links {
+    width: 20%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+#nav-links li {
+    list-style: none;
+    flex: 1; /* Esto permite que los elementos li se expandan para ocupar el espacio disponible */
+    text-align: center; /* Alinear el contenido al centro si es necesario */
+}
+
+#nav-links li a{
+    text-decoration: none;
+    color: white;
+    transition: color 0.3s ease;
+}
+
+#nav-links li a:hover{
+    text-decoration: none;
+    color: #ffd700;
+}
+
+
+
+main{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 20px;
+}
+
+main section{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 50vh;
+    width: 70%;
+}
+
+.news{
+    border: black solid 1px;
+    padding: 15px;
+}
+
+.news-element{
+    margin-top: 20px;
+}
+
+.news h1{
+    color: #333;
+    font-size: large;
+    font-weight: bold;
+}
+
+.news h2{
+    color: red;
+}
+
+.news p{
+    font-style: italic;
+}
+
+aside{
+    background-color:  #f4f4f4;
+    width: 30%;
+    padding: 10px;
+}
+
+aside ul{
+    list-style: none;
+    margin-left: -40px;
+}
+
+footer{
+    display: flex;
+    position: absolute;
+    width: 100%;
+    background-color: #001f3f;
+    justify-content: center;
+    align-items: center;
+    bottom: 0;
+    padding: 1em;
+    color: white;
+}

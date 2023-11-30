@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Rellena CV</h1>
+    <form action="php/insertar_cv.php" method="POST">
+        <label for="nombre">Nombre</label>
+        <br>
+        <input type="text" name="nombre" id="" maxlength="30" size="30" required>
+        <br>
+        <label for="apellido">Apellidos</label>
+        <br>
+        <input type="text" name="apellido" id="" maxlength="80" size="80" required>
+        <br>
+        <label for="pass">Contraseña</label>
+        <br>
+        <input type="password" name="pass" id="" maxlength="10" size="30" required>
+        <br>
+        <label for="dni">DNI</label>
+        <br>
+        <input type="number" name="dni" maxlength="8" size="8" required>
+        <br>
+        <label for="gender">Sexo</label>
+        <br>
+        <input type="radio" name="gender">Hombre
+        <br>
+        <input type="radio" name="gender">Mujer
+        <br>
+        <label for="file">Incluir mi foto</label>
+        <input type="file">
+        <br>
+        <input type="checkbox" checked>Suscribirme al boletín de novedades
+        <br>
+        <input type="submit" value="Guardar cambios">
+    </form>
+</body>
+</html>

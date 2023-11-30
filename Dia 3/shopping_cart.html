@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mockup de eccommerce para asj">
+    <link rel="stylesheet" href="styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,100,1,200" rel="stylesheet" />
+    <title>Shopcito</title>
+</head>
+<body>
+    <div class="page">
+        <header>
+            <a href="index.html"><h1 class="logo">Shopcito</h1></a>
+            <nav class="navbar">
+                <ul class="navlinks-container">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="product.html">Producto</a></li>
+                    <li><a href="">Carrito</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main class="mainpage">
+            <section class="filters product-filters">
+                <div class="where-am-i">
+                    <a href="index.html">Inicio</a>
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                    <a href="product.html">Zapa nike</a>
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                    <p>Checkout</p>
+                </div>
+            </section>
+            <section class="checkout">
+                <article class="checkout-products">
+                    <h3>Carrito</h3>
+                    <div class="checkout-products-element">
+                        <img class="checkout-image" src="Assets/Zapa1.jpg" alt="">
+                        <div class="checkout-details">
+                            <h5>Zapatilla</h5>
+                        <h6>Color negra</h6>
+                        </div>
+                        <h5>$30000</h5>
+                    </div>
+                    <div class="checkout-products-element">
+                        <img class="checkout-image" src="Assets/Zapa1.jpg" alt="">
+                        <div class="checkout-details">
+                            <h5>Zapatilla</h5>
+                        <h6>Color negra</h6>
+                        </div>
+                        <h5>$30000</h5>
+                    </div>
+                    <div class="checkout-products-element">
+                        <img class="checkout-image" src="Assets/Zapa1.jpg" alt="">
+                        <div class="checkout-details">
+                            <h5>Zapatilla</h5>
+                        <h6>Color negra</h6>
+                        </div>
+                        <h5>$30000</h5>
+                    </div>
+                    <div class="checkout-products-element">
+                        <img class="checkout-image" src="Assets/Zapa1.jpg" alt="">
+                        <div class="checkout-product-element-details">
+                            <h5>Zapatilla</h5>
+                        <h6>Color negra</h6>
+                        </div>
+                        <h5>$30000</h5>
+                    </div>
+                </article>
+                <aside class="checkout-summary">
+                    <h4>Resumen</h4>
+                    <div class="checkout-summary-details">
+                        <h5>Total: $90000</h5>
+                        <form action="index.html" method="get" class="checkout-summary-details-form"> <!--Sé que debo usar el metodo post porque es envio de información sensible pero a fines practicos para poder implementar el ruteo al index uso el metodo get--> 
+                            <label for="shipping">Envio a </label>
+                            <select name="shipping" class="shipping">
+                                <option value="Buenos_Aires">Buenos Aires</option>
+                                <option value="Rosario">Rosario</option>
+                                <option value="Entre_Rios">Entre Ríos</option>
+                                <option value="Misiones">Misiones</option>
+                                <option value="Cordoba">Cordoba</option>
+                                <option value="Santiago_del_estero">Santiago Del Estero</option>
+                                <option value="LejosLejos">Lejos</option>
+                            </select>
+                            <label for="disscount">Cupón</label>
+                            <input type="text" name="disscount" class="checkout-summary-details-input">
+                            <label for="credit-card">Número de Tarjeta</label>
+                            <input type="text" name="credit-card">
+                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae, officiis?</p>
+                            <input type="submit" value="Comprar">
+                        </form>
+
+                    </div>
+                </aside>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
