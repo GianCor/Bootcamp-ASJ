@@ -111,6 +111,8 @@ const fizzBuzz = (n) =>{
         return "buzz"
     } else if (n%3 == 0){
         return "fizz"
+    } else {
+        return `${n}`;
     }
 }
 
@@ -122,6 +124,8 @@ const printFizzBuzz = () =>{
         i++
     }
 }
+
+printFizzBuzz();
 
 
 
