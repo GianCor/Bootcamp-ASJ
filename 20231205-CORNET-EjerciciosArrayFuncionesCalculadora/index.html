@@ -10,37 +10,43 @@
 </head>
 <body>
     <section class="container d-flex justify-content-center align-items-center">
-        <div class="calculadora w-25 row">
-            <div class="row" id="display d-flex">
+        <div class="w-25 row d-flex justify-content-center align-items-center mt-5 rounded-2 p-3" id="calculadora">
+            <div class="row d-flex p-4" id="display">
                 <div class="col-12">
                     <h2 id="display-operation">0</h2>
                 </div>
                 <div class="col-12 d-flex align-items-end  justify-content-end">
-                    <h3 id="display-result"></h3>
+                    <h3 id="display-result">0</h3>
                 </div>
             </div>
-            <div class="row">
-                <button class="col btn calc-btn num-btn" value="1">1</button>
-                <button  class="col btn calc-btn num-btn" value="2">2</button>
-                <button  class="col btn calc-btn num-btn" value="3">3</button>
-                <button id="plus" class="col btn calc-btn" value="+">+</button>
-            </div>
-            <div class="row">
-                <button  class="col btn calc-btn num-btn" value="4">4</button>
-                <button  class="col btn calc-btn num-btn" value="5">5</button>
-                <button  class="col btn calc-btn num-btn" value="6">6</button>
-                <button id="minus" class="col btn calc-btn" value="-">-</button>                
-            </div>
-            <div class="row">
-                <button  class="col btn calc-btn num-btn" value="7">7</button>
-                <button  class="col btn calc-btn num-btn" value="8">8</button>
-                <button  class="col btn calc-btn num-btn" value="9">9</button>
-                <button id="multiplied" class="col btn calc-btn" value="*">*</button>
-            </div>
-            <div class="row">
-                <button  class="col-6 btn calc-btn num-btn" value="0">0</button>
-                <button id="divided" class="col btn calc-btn" value="/">/</button>
-                <button id="equals" class="col btn" value="=">=</button>
+            <div class="mt-3">
+                <div class="row">
+                    <button class="col btn calc-btn num-btn border-2 border-black" value="1">1</button>
+                    <button  class="col btn calc-btn num-btn border-2 border-black" value="2">2</button>
+                    <button  class="col btn calc-btn num-btn border-2 border-black" value="3">3</button>
+                    <button id="plus" class="col btn calc-btn border-2 border-black" value="+">+</button>
+                </div>
+                <div class="row">
+                    <button  class="col btn calc-btn num-btn border-2 border-black" value="4">4</button>
+                    <button  class="col btn calc-btn num-btn border-2 border-black" value="5">5</button>
+                    <button  class="col btn calc-btn num-btn border-2 border-black" value="6">6</button>
+                    <button id="minus" class="col btn calc-btn border-2 border-black" value="-">-</button>                
+                </div>
+                <div class="row">
+                    <button  class="col btn calc-btn num-btn border-2 border-black" value="7">7</button>
+                    <button  class="col btn calc-btn num-btn border-2 border-black" value="8">8</button>
+                    <button  class="col btn calc-btn num-btn border-2 border-black" value="9">9</button>
+                    <button id="multiplied" class="col btn calc-btn border-2 border-black" value="*">*</button>
+                </div>
+                <div class="row">
+                    <button  class="col-3 btn calc-btn num-btn border-2 border-black" value="0">0</button>
+                    <button id="clear" class="col btn border-2 border-black">C</button>
+                    <button id="divided" class="col btn calc-btn border-2 border-black" value="/">/</button>
+                    <button id="equals" class="col btn border-2 border-black" value="=">=</button>
+                </div>
+                <div class="row">
+                    <button class="col-3 btn border-2 border-black" id="dark-mode" >Dark mode</button> 
+                </div>
             </div>
         </div>
     </section>

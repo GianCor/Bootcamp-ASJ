@@ -92,102 +92,108 @@
 //     h2Surname.style.color = "red"
 // })
 
-let btns = document.getElementsByClassName("calc-btn");
-let numBtns = document.getElementsByClassName("num-btn")
-let outputOperation = document.getElementById("display-operation")
-let outputEquals = document.getElementById("display-result")
-let equals = document.getElementById("equals")
-let plus = document.getElementById("plus")
-let minus = document.getElementById("minus")
-let multiplied = document.getElementById("multiplied")
-let divided = document.getElementById("divided")
+let outputOperation = document.getElementById("display-operation");
+let outputEquals = document.getElementById("display-result");
+let currentInput = "";
+let currentOperator = null;
+let storedValue = null;
 
-let result = 0;
-let operand = 0;
-
-for (let i = 0; i < btns.length; i++) {
-    btns[i].addEventListener("click", (button) => {
-        let btnValue = button.target.value; 
-        if (outputOperation.innerText == "0") {
-            outputOperation.innerText = ""; 
+const numBtns = document.querySelectorAll(".num-btn");
+const calcBtns = document.querySelectorAll(".calc-btn")
+numBtns.forEach(button => {
+    button.addEventListener("click", () => {
+        if (currentInput == '0') {
+            currentInput = button.value;
+        } else {
+            currentInput += button.value;
         }
-        outputOperation.innerText += btnValue;
+        outputOperation.innerText = ""
+        outputOperation.innerText += currentInput;
     });
+});
+
+const calcular = () => {
+    let currentValue = parseFloat(currentInput);
+    switch (currentOperator) {
+        case "+":
+            storedValue += currentValue;
+            break;
+        case "-":
+            storedValue -= currentValue;
+            break;
+        case "*":
+            storedValue *= currentValue;
+            break;
+        case "/":
+            storedValue /= currentValue;
+            break;
+        default:
+            storedValue = currentValue;
+            break;
+    }
+    outputEquals.innerText = storedValue;
+    currentInput = "0";
+    outputOperation.innerText = currentInput;
 }
 
-for (let i = 0; i < numBtns.length; i++) {
-    numBtns[i].addEventListener("click", (button) => {
-        let btnValue = button.target.value;
-        operand += btnValue;
-    });
+const resolveOperator = (operator) => {
+    if (storedValue === null) {
+        storedValue = parseFloat(currentInput);
+        currentInput = "0";
+        currentOperator = operator;
+    } else {
+        calcular();
+        currentOperator = operator;
+    }
 }
 
-console.log(result)
 
-let flag = 0;
+document.getElementById("plus").addEventListener("click", () => resolveOperator("+"));
+document.getElementById("minus").addEventListener("click", () => resolveOperator("-"));
+document.getElementById("multiplied").addEventListener("click", () => resolveOperator("*"));
+document.getElementById("divided").addEventListener("click", () => resolveOperator("/"));
+document.getElementById("dark-mode").addEventListener("click", () => darkmode())
 
-plus.addEventListener("click", () => {
-    if (operand !== '') {
-        result += parseInt(operand);
-        flag=1;
-    }
-    operand = "";
+
+document.getElementById("equals").addEventListener("click", () => {
+    calcular();
+    currentOperator = null;
 });
 
-minus.addEventListener("click", () => {
-    if (operand !== '') {
-        result -= parseInt(operand);
-        flag=2;
-    }
-    operand = "";
+document.getElementById("clear").addEventListener("click", () => {
+    currentInput = "0";
+    storedValue = null;
+    currentOperator = null;
+    outputOperation.innerText = currentInput;
+    outputEquals.innerText = "0";
 });
 
-divided.addEventListener("click", () => {
-    if (operand !== '') {
-        result = result / parseInt(operand);
-        flag=3;
-    }
-    operand = "";
-});
-
-multiplied.addEventListener("click", () => {
-    if (operand !== '') {
-        result = result * parseInt(operand);
-        flag=4;
-    }
-    operand = "";
-});
-
-
-
-equals.addEventListener("click", () => {
-    if (operand !== '') {
-        const num = parseInt(operand);
-        switch (flag) {
-            case 1:
-                result += num;
-                break;
-            case 2:
-                result -= num;
-                break;
-            case 3:
-                if (num !== 0) {
-                    result /= num;
-                } else {
-                    outputEquals.innerText = "Error: División por cero";
-                    return;
-                }
-                break;
-            case 4:
-                result *= num;
-                break;
-            default:
-                break;
-        }
+let flagDarkMode = false;
+let darkmode = () =>{
+    if(flagDarkMode == false){
+        let btns = document.querySelectorAll(".btn");
+        let display = document.getElementById("display");
+        let calculator = document.getElementById("calculadora")
+        btns.forEach((button) => {
+            button.classList.add("bg-dark");
+            button.classList.add("text-white");
+        });
+        display.classList.add("bg-dark")
+        display.classList.add("text-white")
+        calculator.classList.add("bg-black")
+        flagDarkMode = true;
+    } else {
+        let btns = document.querySelectorAll(".btn");
+        let display = document.getElementById("display");
+        let calculator = document.getElementById("calculadora")
+        btns.forEach((button) => {
+            button.classList.remove("bg-dark");
+            button.classList.remove("text-white");
+        });
+        display.classList.remove("bg-dark")
+        display.classList.remove("text-white")
+        calculator.classList.remove("bg-black")
+        flagDarkMode=false
     }
 
-    operand = '';
-    outputEquals.innerText = result;
-});
-
-
+}
