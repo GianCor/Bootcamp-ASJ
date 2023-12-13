@@ -8,6 +8,8 @@ import { CardComponent } from './components/card/card.component';
 import { PricesComponent } from './components/prices/prices.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { SearchbarComponent} from './components/searchbar/searchbar.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 
 
@@ -19,7 +21,9 @@ import { SearchbarComponent} from './components/searchbar/searchbar.component';
     CardComponent,
     PricesComponent,
     CarouselComponent,
-    SearchbarComponent
+    SearchbarComponent,
+    FooterComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,
