@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col d-flex flex-column">
+    <h2 class="my-3">
+      Simpsoniform
+    </h2>
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Nombre del personaje"
+      [(ngModel)]="name"
+    />
+
+    <div class="form-floating">
+      <textarea
+        class="form-control mt-2"
+        placeholder=""
+        id="floatingTextarea"
+        [(ngModel)]="description"
+      ></textarea>
+      <label for="floatingTextarea">Descripción</label>
+    </div>
+
+    <input
+      type="text"
+      class="form-control mt-2"
+      placeholder="URL de la imagen"
+      [(ngModel)]="url"
+    />
+    <button class="btn btn-outline-warning mt-2" (click)="addCharacter()">
+      Agregar personaje
+    </button>
+  </div>
+
+  <div class="col">
+    <app-table-simpsons [characterList]="characterList"></app-table-simpsons>
+  </div>
+</div>

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "App-Proyectos": {
+    "20231214-CORNET-PruebasInputOutput": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/app-proyectos",
+            "outputPath": "dist/20231214-cornet-pruebas-input-output",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -25,12 +25,9 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
-            "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -63,10 +60,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "App-Proyectos:build:production"
+              "browserTarget": "20231214-CORNET-PruebasInputOutput:build:production"
             },
             "development": {
-              "browserTarget": "App-Proyectos:build:development"
+              "browserTarget": "20231214-CORNET-PruebasInputOutput:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -74,7 +71,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "App-Proyectos:build"
+            "browserTarget": "20231214-CORNET-PruebasInputOutput:build"
           }
         },
         "test": {

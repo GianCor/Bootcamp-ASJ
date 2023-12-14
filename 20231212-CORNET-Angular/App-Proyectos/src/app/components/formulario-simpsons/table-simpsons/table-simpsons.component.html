@@ -1,0 +1,20 @@
+<div class="table-responsive table-container">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Descripcion</th>
+        <th scope="col">Imagen</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="characterList.length > 0" class="overflow-y-auto">
+      <tr class="" *ngFor="let character of characterList">
+        <td>{{ character.name }}</td>
+        <td>{{ character.description }}</td>
+        <td class="d-flex align-items-center justify-content-center">
+          <img class="img-table" src="{{ character.url }}" alt="" />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
