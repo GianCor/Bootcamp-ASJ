@@ -5,6 +5,7 @@ interface TaskItem {
   date: Date;
   done: Boolean;
   deleted: Boolean;
+  show: Boolean;
 }
 
 @Component({
@@ -15,6 +16,13 @@ interface TaskItem {
 export class ToDoListComponent {
   task: string = '';
   taskList: TaskItem[] = [];
+  showAllTasks: boolean = true;
+  showCompletedTasks: boolean = false;
+  showDeletedTasks: boolean = false;
+  deletedActive: boolean = false;
+  pendingActive: boolean = false;
+  doneActive: boolean = false;
+  allActive: boolean = true;
 
   addTask = () => {
     if (this.task != '') {
@@ -24,19 +32,58 @@ export class ToDoListComponent {
         date: newDate,
         done: false,
         deleted: false,
+        show: true,
       });
       this.task = '';
     }
   };
+
   deleteTask = (taskItem: TaskItem) => {
-    const taskIndex = this.taskList.indexOf(taskItem);
-    if (taskIndex != -1) {
-      this.taskList.splice(taskIndex, 1);
+    taskItem.deleted = true;
+    taskItem.show = false;
+    console.log(this.deletedActive)
+    if(this.deletedActive){
+      const taskIndex = this.taskList.indexOf(taskItem)
+      if (taskIndex > -1) {
+        this.taskList.splice(taskIndex, 1);
+        console.log('Elemento eliminado:', taskItem);
+      }
     }
   };
+
   endTask = (taskItem: TaskItem) => {
     taskItem.done = !taskItem.done;
   };
 
-  seeTasksDone = () => {};
+  showDeleted = () => {
+    this.taskList.forEach((task) => {
+      task.deleted == true ? (task.show = true) : (task.show = false);
+    });
+    this.deletedActive = true;
+  };
+
+  showDone = () => {
+    this.taskList.forEach((task) => {
+      task.done == true && task.deleted == false
+        ? (task.show = true)
+        : (task.show = false);
+    });
+    this.deletedActive = false;
+  };
+
+  showAll = () => {
+    this.taskList.forEach((task) => {
+      task.show = true;
+    });
+    this.deletedActive = false;
+  };
+
+  showPending = () => {
+    this.taskList.forEach((task) => {
+      task.done == false && task.deleted == false
+        ? (task.show = true)
+        : (task.show = false);
+    });
+    this.deletedActive = false;
+  };
 }
