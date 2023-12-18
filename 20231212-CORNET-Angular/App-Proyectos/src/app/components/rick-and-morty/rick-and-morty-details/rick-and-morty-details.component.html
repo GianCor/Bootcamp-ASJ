@@ -1,0 +1,16 @@
+<div class="d-flex justify-content-between">
+  <div class="card" style="width: 18rem">
+    <img src="{{ character.image }}" class="card-img-top" alt="..." />
+    <div class="card-body">
+      <h5 class="card-title">{{ character.name }}</h5>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">{{ character.gender }}</li>
+      <li class="list-group-item">{{ character.species }}</li>
+      <li class="list-group-item">{{ character.status }}</li>
+    </ul>
+  </div>
+  <div>
+    <button class="btn btn-sm btn-outline-success " routerLink="/proyectos/rick-and-morty">Go Back</button>
+  </div>
+</div>
