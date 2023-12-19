@@ -1,46 +1,4 @@
-<div class="row">
-  <div class="btn-group ">
-    <button class="btn" routerLink=[]>Usuarios</button>
-    <button class="btn">Agregar</button>
-</div>
-  <div class="col-7">
-    <h3>Listado de usuarios</h3>
-    <div class="table-responsive">
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Avatar</th>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Opciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let user of users">
-            <td class="user-avatar"><img src="{{ user.avatar }}" alt="" /></td>
-            <td>{{ user.first_name }}</td>
-            <td>{{ user.last_name }}</td>
-            <td>
-              <div class="btn-group">
-                <button
-                  class="btn btn-sm btn-outline-primary"
-                  (click)="update(user)"
-                >
-                  Editar</button
-                ><button
-                  class="btn btn-sm btn-outline-danger"
-                  (click)="delete(user.id)"
-                >
-                  Eliminar
-                </button>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  <div class="col">
+<div class="col">
     <h3>Nuevo Usuario</h3>
     <form #miForm="ngForm" (ngSubmit)="create(miForm)">
       <input type="hidden" [(ngModel)]="userService.dataUser.id" />
@@ -87,4 +45,3 @@
       </div>
     </form>
   </div>
-</div>

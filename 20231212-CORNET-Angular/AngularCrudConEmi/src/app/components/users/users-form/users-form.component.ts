@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { UsersService } from 'src/app/services/users.service';
+import {Router} from '@angular/router'
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css'],
+  selector: 'app-users-form',
+  templateUrl: './users-form.component.html',
+  styleUrls: ['./users-form.component.css']
 })
-export class UsersComponent implements OnInit {
-  constructor(public userService: UsersService) {}
+export class UsersFormComponent {
+  constructor(public userService: UsersService, private route:Router) {}
 
   users: any = [];
   msg: string = '';
@@ -56,7 +57,7 @@ export class UsersComponent implements OnInit {
       this.userService.updateUsers(form.value).subscribe((res) => {
         this.msg = 'Usuario creado correctamente';
         this.resetForm(form)
-        this.list();
+        this.route.navigate(["/users"])
       });
     } else {
       if (!form.valid) {
