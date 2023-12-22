@@ -1,0 +1,9 @@
+<div class="container">
+    <input
+      type="text"
+      class="form-control"
+      (keydown.enter)="pushToArr(input)"
+      [(ngModel)]="input"
+    />
+    <p>Array: {{ array | primo }}</p>
+  </div>

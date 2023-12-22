@@ -14,6 +14,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { RickAndMortyDetailsComponent } from './components/rick-and-morty/rick-and-morty-details/rick-and-morty-details.component';
 import { RickAndMortyService } from './services/rick-and-morty.service';
 import { RickAndMortyListComponent } from './components/rick-and-morty/rick-and-morty-list/rick-and-morty-list.component';
+import { PrimoPipe } from './pipes/primo.pipe';
+import { PipeComponent } from './components/pipe/pipe.component';
+
+
 
 
 @NgModule({
@@ -25,9 +29,11 @@ import { RickAndMortyListComponent } from './components/rick-and-morty/rick-and-
     FormularioSimpsonsComponent,
     TableSimpsonsComponent,
     RickAndMortyDetailsComponent,
-    RickAndMortyListComponent
+    RickAndMortyListComponent,
+    PrimoPipe,
+    PipeComponent,
   ],
-  imports: [BrowserModule, NgbModule, FormsModule, AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, NgbModule, FormsModule, AppRoutingModule, HttpClientModule,],
   providers: [RickAndMortyService],
   bootstrap: [AppComponent],
 })

@@ -4,6 +4,7 @@ import { ToDoListComponent } from './components/to-do-list/to-do-list.component'
 import { FormularioSimpsonsComponent } from './components/formulario-simpsons/formulario-simpsons.component';
 import { RickAndMortyListComponent } from './components/rick-and-morty/rick-and-morty-list/rick-and-morty-list.component';
 import { RickAndMortyDetailsComponent } from './components/rick-and-morty/rick-and-morty-details/rick-and-morty-details.component';
+import { PipeComponent } from './components/pipe/pipe.component';
 
 const routes: Routes = [
   {
@@ -15,10 +16,14 @@ const routes: Routes = [
         path: 'rick-and-morty',
         children: [
           { path: 'lista', component: RickAndMortyListComponent },
-          { path: 'detalles/:idCharacter', component: RickAndMortyDetailsComponent },
+          {
+            path: 'detalles/:idCharacter',
+            component: RickAndMortyDetailsComponent,
+          },
           { path: '', component: RickAndMortyListComponent },
         ],
       },
+      { path: 'pipes-angular', component: PipeComponent },
     ],
   },
   { path: '', component: ToDoListComponent },
