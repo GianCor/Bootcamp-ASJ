@@ -1,6 +1,8 @@
 package com.example.todolist.controllers;
 
 import java.util.ArrayList;
+import java.util.Optional;
+
 import com.example.todolist.models.TareaModel;
 import com.example.todolist.services.TareaService;
 
@@ -28,26 +30,26 @@ public class TareaController {
 	
 	@GetMapping
 	public ResponseEntity<ArrayList<TareaModel>> getTareas(){
-		return ResponseEntity.ok(null);
+		return ResponseEntity.ok(tareaService.getTareas());
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<TareaModel> getTareaById(@PathVariable Integer id) {
-		return ResponseEntity.ok(null);
+	public ResponseEntity<Optional<TareaModel>> getTareaById(@PathVariable Integer id) {
+		return ResponseEntity.ok(tareaService.getTareaByID(id));
 	}
 	
 	@PostMapping
-	public ResponseEntity<String> createTarea(@RequestBody TareaModel tarea) {
-		return ResponseEntity.ok(null);
+	public TareaModel createTarea(@RequestBody TareaModel tarea) {
+		return tareaService.crearTarea(tarea);
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<String> updateTarea(@PathVariable Integer id) {
-		return ResponseEntity.ok(null);
+	public ResponseEntity<String> updateTarea(@PathVariable Integer id, @RequestBody TareaModel tarea) {
+		return ResponseEntity.ok(tareaService.modificarTarea(id, tarea));
 	}
 	
-	@DeleteMapping("/id")
-	public ResponseEntity<String> deleteTarea(@PathVariable Integer id, @RequestBody TareaModel tarea) {
-		return ResponseEntity.ok(null);
+	@DeleteMapping("/{id}")
+	public Optional<TareaModel> deleteTarea(@PathVariable Integer id) {
+		return tareaService.eliminarTarea(id);
 	}
 }

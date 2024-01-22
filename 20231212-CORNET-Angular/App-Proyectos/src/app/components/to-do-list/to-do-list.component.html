@@ -8,7 +8,8 @@
       placeholder="Ingrese una tarea"
       type="text"
       (keyup.enter)="addTask()"
-      (keyup.escape)="deleteTask(taskList[taskList.length - 1])"
+      (keyup)="navigation($event.key)"
+      (keyup.escape)="deleteTask(taskList[lastDeleted()])"
     />
     <button class="btn btn-outline-dark" (click)="addTask()">Agregar</button>
   </div>
@@ -18,10 +19,34 @@
         Enter para agregar, Escape para eliminar.
       </p>
       <div class="btn-group-sm">
-        <button class="btn btn-outline-secondary" (click)="showAll()">Ver todo</button>
-        <button class="btn btn-outline-secondary" (click)="showPending()">Ver tareas pendientes</button>
-        <button class="btn btn-outline-secondary" (click)="showDone()">Ver tareas resueltas</button>
-        <button class="btn btn-outline-danger" (click)="showDeleted()">Papelera</button>
+        <button
+          class="btn btn-outline-secondary"
+          [ngClass]="{ 'active': buttonState === 'all' }"
+          (click)="showAll()"
+        >
+          Ver todo
+        </button>
+        <button
+          class="btn btn-outline-secondary"
+          [ngClass]="{ active: buttonState === 'pending' }"
+          (click)="showPending()"
+        >
+          Ver tareas pendientes
+        </button>
+        <button
+          class="btn btn-outline-secondary"
+          [ngClass]="{ active: buttonState === 'done' }"
+          (click)="showDone()"
+        >
+          Ver tareas resueltas
+        </button>
+        <button
+          class="btn btn-outline-danger"
+          [ngClass]="{ active: buttonState === 'deleted' }"
+          (click)="showDeleted()"
+        >
+          Papelera
+        </button>
       </div>
     </div>
     <ul class="list-group">
@@ -30,25 +55,30 @@
         *ngFor="let taskItem of taskList"
         [hidden]="!taskItem.show"
       >
-      <div class="d-flex justify-content-between">
-        <div class="d-flex flex-column">
-          <h5 [ngClass]="{ done: taskItem.done, deleted: taskItem.deleted}">
-            <input
-              (click)="endTask(taskItem)"
-              type="checkbox"
-              class="form-check-input"
-            />{{ taskItem.task }}
-          </h5>
-          <p class="text-body-secondary">
-            {{ taskItem.date | date : "short" }}
-          </p>
+        <div class="d-flex justify-content-between">
+          <div class="d-flex flex-column">
+            <h5 [ngClass]="{ done: taskItem.state, deleted: taskItem.deleted }">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                [(ngModel)]="taskItem.state"
+                (click)="endTask(taskItem)"
+              />
+              {{ taskItem.task }}
+            </h5>
+            <p class="text-body-secondary">
+              {{ taskItem.date | date : "short" }}
+            </p>
+          </div>
+          <div class="d-flex align-items-center mx-2">
+            <button
+              (click)="deleteTask(taskItem)"
+              class="btn btn-outline-danger"
+            >
+              X
+            </button>
+          </div>
         </div>
-        <div class="d-flex align-items-center mx-2">
-          <button (click)="deleteTask(taskItem)" class="btn btn-outline-danger">
-            X
-          </button>
-        </div>
-      </div>
       </li>
     </ul>
   </div>

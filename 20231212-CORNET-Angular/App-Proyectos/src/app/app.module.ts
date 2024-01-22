@@ -16,6 +16,7 @@ import { RickAndMortyService } from './services/rick-and-morty.service';
 import { RickAndMortyListComponent } from './components/rick-and-morty/rick-and-morty-list/rick-and-morty-list.component';
 import { PrimoPipe } from './pipes/primo.pipe';
 import { PipeComponent } from './components/pipe/pipe.component';
+import { TodoListService } from './services/todo-list.service';
 
 
 
@@ -34,7 +35,7 @@ import { PipeComponent } from './components/pipe/pipe.component';
     PipeComponent,
   ],
   imports: [BrowserModule, NgbModule, FormsModule, AppRoutingModule, HttpClientModule,],
-  providers: [RickAndMortyService],
+  providers: [RickAndMortyService, TodoListService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

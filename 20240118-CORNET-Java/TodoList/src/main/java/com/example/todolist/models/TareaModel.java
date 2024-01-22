@@ -1,5 +1,7 @@
 package com.example.todolist.models;
 
+import java.util.Date;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,45 +18,59 @@ public class TareaModel {
 	@Column(unique = true, nullable = false)
 	private Integer id;
 	@Column
-	private String nombre;
-	private String descripcion ;
-	private Boolean estado;
+	private String task;
+	private Boolean state;
+	private Boolean deleted;
+	private Boolean show;
+	private Date date;
 	
 	
 	
 	public TareaModel() {
 	}
-	public TareaModel(int id, String nombre, String descripcion, boolean estado) {
+	public TareaModel(int id, String task, Date date, Boolean state, Boolean deleted, Boolean show) {
 		this.id = id;
-		this.nombre = nombre;
-		this.descripcion = descripcion;
-		this.estado = estado;
+		this.task = task;
+		this.date = date;
+		this.state = state;
+		this.deleted = deleted;
+		this.show = show;
 	}
 	
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getNombre() {
-		return nombre;
+	public String getTask() {
+		return task;
 	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setTask(String task) {
+		this.task = task;
 	}
-	public String getDescripcion() {
-		return descripcion;
+	public Boolean getState() {
+		return state;
 	}
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setState(Boolean state) {
+		this.state = state;
 	}
-	public boolean isEstado() {
-		return estado;
+	public Boolean getDeleted() {
+		return deleted;
 	}
-	public void setEstado(boolean estado) {
-		this.estado = estado;
+	public void setDeleted(Boolean deleted) {
+		this.deleted = deleted;
 	}
-	
-	
+	public Boolean getShow() {
+		return show;
+	}
+	public void setShow(Boolean show) {
+		this.show = show;
+	}
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
+	}
 }

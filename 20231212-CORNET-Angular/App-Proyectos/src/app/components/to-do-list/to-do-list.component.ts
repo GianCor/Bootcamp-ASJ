@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { TodoListService } from 'src/app/services/todo-list.service';
 
 interface TaskItem {
+  id: number;
   task: string;
   date: Date;
-  done: Boolean;
+  state: Boolean;
   deleted: Boolean;
   show: Boolean;
 }
@@ -13,7 +15,17 @@ interface TaskItem {
   templateUrl: './to-do-list.component.html',
   styleUrls: ['./to-do-list.component.css'],
 })
-export class ToDoListComponent {
+export class ToDoListComponent implements OnInit{
+
+  constructor(private todoListService:  TodoListService, private cdr: ChangeDetectorRef){}
+
+  ngOnInit(): void {
+    this.loadTaskList();
+  }
+
+  
+
+  buttonState: string = 'all';
   task: string = '';
   taskList: TaskItem[] = [];
   showAllTasks: boolean = true;
@@ -25,34 +37,57 @@ export class ToDoListComponent {
   allActive: boolean = true;
 
   addTask = () => {
-    if (this.task != '') {
-      let newDate = new Date();
-      this.taskList.push({
+    if (this.task !== '') {
+      const newDate = new Date();
+      const newTask = {
         task: this.task,
         date: newDate,
-        done: false,
+        state: false,
         deleted: false,
         show: true,
+      };
+  
+      this.todoListService.postTareas(newTask).subscribe((response) => {
+        this.taskList.push(response);
+        this.task = '';
       });
-      this.task = '';
     }
-  };
+    this.buttonState = "pending"
+    console.log(this.buttonState)
+  }
+  
+  private loadTaskList() {
+    this.todoListService.getTareas().subscribe(
+      (taskList) => {
+        this.taskList = taskList;
+        console.log(this.taskList)
+        this.showAll();
+      }
+    );
+  }
 
   deleteTask = (taskItem: TaskItem) => {
-    taskItem.deleted = true;
-    taskItem.show = false;
-    console.log(this.deletedActive)
-    if(this.deletedActive){
+    if(!this.deletedActive && taskItem.deleted == false){
+      taskItem.show = !taskItem.show
+      taskItem.deleted = true;
+      this.todoListService.putTareas(taskItem).subscribe()
+    }else{
       const taskIndex = this.taskList.indexOf(taskItem)
       if (taskIndex > -1) {
-        this.taskList.splice(taskIndex, 1);
-        console.log('Elemento eliminado:', taskItem);
+        if(this.taskList[taskIndex].id != undefined){
+          this.todoListService.deleteTareas(this.taskList[taskIndex].id).subscribe((response)=>{
+          });
+
+        }
+        this.taskList.splice(taskIndex, 1)
       }
     }
   };
 
   endTask = (taskItem: TaskItem) => {
-    taskItem.done = !taskItem.done;
+    taskItem.state = !taskItem.state;
+    taskItem.show = true;
+    this.todoListService.putTareas(taskItem).subscribe((response) => console.log(response))
   };
 
   showDeleted = () => {
@@ -60,15 +95,17 @@ export class ToDoListComponent {
       task.deleted == true ? (task.show = true) : (task.show = false);
     });
     this.deletedActive = true;
+    this.buttonState = 'deleted';
   };
 
   showDone = () => {
     this.taskList.forEach((task) => {
-      task.done == true && task.deleted == false
+      task.state == true && task.deleted == false
         ? (task.show = true)
         : (task.show = false);
     });
     this.deletedActive = false;
+    this.buttonState = 'done';
   };
 
   showAll = () => {
@@ -76,14 +113,37 @@ export class ToDoListComponent {
       task.show = true;
     });
     this.deletedActive = false;
+    this.buttonState = 'all';
   };
 
   showPending = () => {
     this.taskList.forEach((task) => {
-      task.done == false && task.deleted == false
+      task.state == false && task.deleted == false
         ? (task.show = true)
         : (task.show = false);
     });
     this.deletedActive = false;
+    this.buttonState = 'pending';
   };
+
+  lastDeleted = () =>{
+    let indexOfLastDeleted = this.taskList.map(lastDeleted => lastDeleted.deleted).lastIndexOf(false);
+    return indexOfLastDeleted
+  }
+
+  arrFunctions: (() => void)[] = [this.showAll, this.showPending, this.showDone, this.showDeleted];
+  lastIndex: number = 0;
+
+  navigation(tecla: string) {
+    switch (tecla) {
+      case 'ArrowLeft':
+        this.lastIndex = (this.lastIndex - 1 + this.arrFunctions.length) % this.arrFunctions.length;
+        break;
+      case 'ArrowRight':
+        this.lastIndex = (this.lastIndex + 1) % this.arrFunctions.length;
+        break;
+    }
+
+    this.arrFunctions[this.lastIndex]();
+  }
 }
